@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('checkout the code from github'){
             steps{
-                 git url: 'https://github.com/Manishasharma019/star-agile-banking-finance/'
+                 git url: 'https://github.com/Manishasharma019/project-banking-finance'
                  echo 'github url checkout'
             }
         }
@@ -30,20 +30,20 @@ pipeline{
         }
         stage('run dockerfile'){
           steps{
-               sh 'docker build -t manisha0109/finance1project:1 .'
+               sh 'docker build -t manisha0109/financemeproject:1 .'
            }
          }
         stage('Login to dockerhub'){
             steps{
-                withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhubpass')]) {
-                    sh 'docker login -u manisha0109 -p ${dockerhubpass}'
+                withCredentials([string(credentialsId: 'dockerhubcredential', variable: 'dockerhubcredential')]) {
+                    sh 'docker login -u manisha0109 -p ${dockerhubcredential}'
                 
                 }
             }
         }
         stage('Push the image to dockerhub'){
             steps{
-                sh 'docker push manisha0109/finance1project:1'
+                sh 'docker push manisha0109/financemeproject:1'
             }
         }
         stage('Deployment stage using ansible'){
