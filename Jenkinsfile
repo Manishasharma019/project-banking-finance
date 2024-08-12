@@ -30,7 +30,7 @@ pipeline{
         }
         stage('run dockerfile'){
           steps{
-               sh 'docker build -t manisha0109/financemeproject:1.1 .'
+               sh 'docker build -t manisha0109/financemeproject:2 .'
            }
          }
         stage('Login to dockerhub'){
@@ -43,7 +43,7 @@ pipeline{
         }
         stage('Push the image to dockerhub'){
             steps{
-                sh 'docker push manisha0109/financemeproject:1.1'
+                sh 'docker push manisha0109/financemeproject:2'
             }
         }
         stage('Deployment stage using ansible'){
